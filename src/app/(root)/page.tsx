@@ -69,15 +69,13 @@ export default async function Home() {
         <h6></h6>
       </div>
 
-      <div className=''>
+      <div className='mb-10'>
         <h1 className='text-4xl font-bold text-center p-10'>
           {comedy[0].title}
         </h1>
         <Slider array={comedy[0].content} />
         <h6></h6>
       </div>
-      {/* Footer */}
-      <div className='mt-10'></div>
     </div>
   );
 }

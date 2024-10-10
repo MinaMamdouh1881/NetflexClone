@@ -9,7 +9,7 @@ export default async function getTopComedy() {
         'Content-Type': 'application/json',
         token: `${cookies().get('token')?.value}`,
       },
-      cache: 'no-store',
+      next: { revalidate: 60 * 5 },
     }
   ).then((res) => res.json());
   return res;

@@ -9,10 +9,7 @@ export default function MyAvatar() {
   const logOut = () => {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    // window.location.href = '/login';
     router.push('/login');
-
-    // redirect('/login')
   };
 
   return (
