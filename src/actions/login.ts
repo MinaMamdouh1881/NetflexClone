@@ -33,7 +33,6 @@ export default async function login(_state: undefined, data: FormData) {
         maxAge: 7 * 24 * 60 * 60,
         path: '/',
       });
-      console.log('Login Success');
       redirect('/');
     } else {
       return { res: data.message };

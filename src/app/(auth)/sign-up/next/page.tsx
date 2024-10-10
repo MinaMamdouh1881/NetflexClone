@@ -9,9 +9,6 @@ function page() {
     signUp as any,
     undefined as signUpErrors | undefined
   );
-
-  console.log(isPending);
-
   return (
     <>
       <form

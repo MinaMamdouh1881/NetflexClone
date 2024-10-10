@@ -26,7 +26,6 @@ export default async function signUp(_state: undefined, data: FormData) {
       }
     );
     const data = await res.json();
-    console.log(res);
 
     if (res.ok) {
       cookies().delete('email');
@@ -38,13 +37,11 @@ export default async function signUp(_state: undefined, data: FormData) {
         maxAge: 7 * 24 * 60 * 60,
         path: '/',
       });
-      console.log('Login Success');
       redirect('/');
     } else {
       return redirect(`/sign-up?res=${data.message}`);
     }
   } else {
-    console.log(result.error.errors);
     let errors = { username: '', password: '' };
     result.error.errors.map((e) => {
       if (e.path[0] === 'username') {
