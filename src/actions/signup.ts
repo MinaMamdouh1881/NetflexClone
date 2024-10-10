@@ -4,12 +4,12 @@ import { signUpSchema } from '@/validation/signupNext';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function signUp(data: FormData) {
-  const email = cookies().get('email')?.value ?? '';
-  const username = data.get('username') as string;
-  const password = data.get('password') as string;
-
-  const result = signUpSchema.safeParse({ username, email, password });
+export default async function signUp(_state: undefined, data: FormData) {
+  const result = signUpSchema.safeParse({
+    email: cookies().get('email')?.value,
+    username: data.get('username'),
+    password: data.get('password'),
+  });
   if (result.success) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`,
@@ -19,16 +19,17 @@ export default async function signUp(data: FormData) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: result.data.email,
           username: result.data.username,
+          email: result.data.email,
           password: result.data.password,
         }),
       }
     );
-
     const data = await res.json();
+    console.log(res);
 
-    if (res.status === 201) {
+    if (res.ok) {
+      cookies().delete('email');
       cookies().set('token', `${data.email} ${data.accessToken}`, {
         maxAge: 7 * 24 * 60 * 60,
         path: '/',
@@ -37,28 +38,23 @@ export default async function signUp(data: FormData) {
         maxAge: 7 * 24 * 60 * 60,
         path: '/',
       });
-      cookies().delete('email');
-
-      return redirect('/sign-up/next?success=true');
+      console.log('Login Success');
+      redirect('/');
     } else {
       return redirect(`/sign-up?res=${data.message}`);
     }
   } else {
-    let usernameError = '';
-    let passwordError = '';
+    console.log(result.error.errors);
+    let errors = { username: '', password: '' };
     result.error.errors.map((e) => {
       if (e.path[0] === 'username') {
-        return (usernameError = e.message);
+        return (errors.username = e.message);
       }
       if (e.path[0] === 'password') {
-        return (passwordError = e.message);
+        return (errors.password = e.message);
       }
       return;
     });
-    return redirect(
-      `/sign-up/next?${usernameError && `usernameError=${usernameError}`}${
-        passwordError && `&passwordError=${passwordError}`
-      }`
-    );
+    return errors;
   }
 }
