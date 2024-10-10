@@ -4,8 +4,6 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   let cookie = request.cookies.get('token')?.value;
 
-  console.log(request.nextUrl.pathname);
-
   if (request.nextUrl.pathname === '/') {
     if (!cookie) {
       return NextResponse.redirect(new URL('/login', request.url));
@@ -19,6 +17,21 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.includes('/sign-up')) {
     if (cookie) {
       return NextResponse.redirect(new URL('/', request.url));
+    }
+  }
+  if (request.nextUrl.pathname.includes('/movies')) {
+    if (!cookie) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+  if (request.nextUrl.pathname.includes('/tv-shows')) {
+    if (!cookie) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+  if (request.nextUrl.pathname.includes('/video')) {
+    if (!cookie) {
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   }
 
