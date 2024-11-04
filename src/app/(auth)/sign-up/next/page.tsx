@@ -5,7 +5,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { signUpErrors } from '@/types/signUpErrors';
 
 function page() {
-  const [error, formAction, isPending] = useFormState(
+  const [error, formAction] = useFormState(
     signUp as any,
     undefined as signUpErrors | undefined
   );
