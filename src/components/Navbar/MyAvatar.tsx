@@ -1,7 +1,6 @@
 'use client';
 
 import Button from '@mui/material/Button';
-import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 export default function MyAvatar() {
