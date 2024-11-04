@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 export default async function getRandomSeries() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/movies/random?type=series`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/movie/random?type=series`,
     {
       method: 'GET',
       headers: {

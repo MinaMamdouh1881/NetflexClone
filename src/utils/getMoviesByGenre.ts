@@ -5,7 +5,7 @@ export default async function getMoviesOrSeriesByGenre(
   genre: string
 ) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/movies/query?type=${type}&genre=${genre}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/movie/query?type=${type}&genre=${genre}`,
     {
       method: 'GET',
       headers: {

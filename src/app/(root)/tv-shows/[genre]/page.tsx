@@ -5,14 +5,15 @@ import InfoIcon from '@mui/icons-material/Info';
 import { MOVIE } from '@/types/movie';
 import GridSystem from '@/components/GridSystem/GridSystem';
 import getMoviesOrSeriesByGenre from '@/utils/getMoviesByGenre';
+import Link from 'next/link';
 
 export default async function Page({ params }: { params: { genre: string } }) {
-  const movies: MOVIE[] = await getMoviesOrSeriesByGenre('movie', params.genre);
+  const movies: MOVIE[] = await getMoviesOrSeriesByGenre('series', params.genre);
 
   if (movies.length === 0)
     return (
       <div className='bg-cover bg-center h-screen w-full pt-24 flex justify-center items-center text-5xl text-red-500'>
-        No movies found
+        No Series Found
       </div>
     );
 
@@ -36,13 +37,20 @@ export default async function Page({ params }: { params: { genre: string } }) {
             </p>
 
             <div className='flex gap-4 flex-row mt-5'>
-              <Button
-                variant='contained'
-                startIcon={<PlayArrowIcon />}
-                sx={{ background: 'white', color: 'black' }}
+              <Link
+                href={{
+                  pathname: `/video/`,
+                  query: { id: movies[0]._id },
+                }}
               >
-                Play
-              </Button>
+                <Button
+                  variant='contained'
+                  startIcon={<PlayArrowIcon />}
+                  sx={{ background: 'white', color: 'black' }}
+                >
+                  Play
+                </Button>
+              </Link>
               <Button
                 variant='contained'
                 startIcon={<InfoIcon />}

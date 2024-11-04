@@ -6,6 +6,7 @@ import getRandomSeries from '@/utils/getRandomSeries';
 import getAllSeries from '@/utils/getAllSeries';
 import { MOVIE } from '@/types/movie';
 import GridSystem from '@/components/GridSystem/GridSystem';
+import Link from 'next/link';
 
 export default async function Page() {
   const [movie, allMovies]: [MOVIE[], MOVIE[]] = await Promise.all([
@@ -33,13 +34,20 @@ export default async function Page() {
             </p>
 
             <div className='flex gap-4 flex-row mt-5'>
-              <Button
-                variant='contained'
-                startIcon={<PlayArrowIcon />}
-                sx={{ background: 'white', color: 'black' }}
+              <Link
+                href={{
+                  pathname: `/video/`,
+                  query: { id: movie[0]._id },
+                }}
               >
-                Play
-              </Button>
+                <Button
+                  variant='contained'
+                  startIcon={<PlayArrowIcon />}
+                  sx={{ background: 'white', color: 'black' }}
+                >
+                  Play
+                </Button>
+              </Link>
               <Button
                 variant='contained'
                 startIcon={<InfoIcon />}

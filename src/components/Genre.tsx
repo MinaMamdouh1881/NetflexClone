@@ -32,14 +32,20 @@ export default function Genre() {
 
   useEffect(() => {
     if (pathname === '/movies' || pathname === '/tv-shows') return;
-    if (genres.some((genre) => genre === pathname.replace('/movies/', '')))
+    if (genres.some((genre) => genre === pathname.replace('/movies/', ''))) {
       setGenre(pathname.replace('/movies/', ''));
-    else router.push('/404');
+    } else if (
+      genres.some((genre) => genre === pathname.replace('/tv-shows/', ''))
+    ) {
+      setGenre(pathname.replace('/tv-shows/', ''));
+    } else router.push('/404');
   }, []);
 
   useEffect(() => {
     if (genre) {
-      router.push(`/movies/${genre}`);
+      if (pathname.includes('/movies')) router.push(`/movies/${genre}`);
+      else if (pathname.includes('/tv-shows'))
+        router.push(`/tv-shows/${genre}`);
     }
   }, [genre]);
 
@@ -84,7 +90,6 @@ export default function Genre() {
               {genre.charAt(0).toUpperCase() + genre.slice(1)}
             </MenuItem>
           ))}
-
         </Select>
       </FormControl>
     </Box>

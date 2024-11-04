@@ -41,7 +41,7 @@ const Animation = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='relative'>
       <button
-        className='absolute top-1/2 left-0 -translate-y-1/2 z-50'
+        className='absolute top-1/2 left-0 -translate-y-1/2 z-50 h-full'
         onClick={() => scrollHandler('left')}
         disabled={scrollPosition === 0}
       >
@@ -56,7 +56,7 @@ const Animation = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <button
-        className='absolute top-1/2 right-0 -translate-y-1/2 z-50'
+        className='absolute top-1/2 right-0 -translate-y-1/2 z-50 h-full'
         onClick={() => scrollHandler('right')}
         disabled={scrollPosition >= maxScroll}
       >

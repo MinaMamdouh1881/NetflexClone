@@ -8,6 +8,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import { MOVIE } from '@/types/movie';
 import { LIST } from '@/types/list';
+import Link from 'next/link';
 
 export const revalidate = 1;
 
@@ -35,13 +36,20 @@ export default async function Home() {
             </p>
 
             <div className='flex gap-4 flex-row mt-5'>
-              <Button
-                variant='contained'
-                startIcon={<PlayArrowIcon />}
-                sx={{ background: 'white', color: 'black' }}
+              <Link
+                href={{
+                  pathname: `/video/`,
+                  query: { id: movie[0]._id },
+                }}
               >
-                Play
-              </Button>
+                <Button
+                  variant='contained'
+                  startIcon={<PlayArrowIcon />}
+                  sx={{ background: 'white', color: 'black' }}
+                >
+                  Play
+                </Button>
+              </Link>
               <Button
                 variant='contained'
                 startIcon={<InfoIcon />}

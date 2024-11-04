@@ -58,7 +58,7 @@ function Grid({ item }: { item: MOVIE }) {
           url={item.trailer}
           width='100%'
           height='100%'
-          controls={true}
+          // controls={true}
           playing={shouldPlay}
           config={{
             youtube: {

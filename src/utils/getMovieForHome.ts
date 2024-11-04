@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 
 export default async function getMovieForHome() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/movies/random?type=movie`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/movie/random?type=movie`,
     {
       method: 'GET',
       headers: {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '../globals.css';
 import Navbar from '@/components/Navbar/Navbar';
 import localFont from 'next/font/local';
+import Footer from '@/components/Footer';
 
 const roboto = localFont({ src: '../../fonts/Roboto.woff2' });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={`${roboto.className}`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

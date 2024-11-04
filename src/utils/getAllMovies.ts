@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
 export default async function getAllMovies() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/movies`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/movie`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

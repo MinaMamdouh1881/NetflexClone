@@ -23,6 +23,8 @@ export default async function login(_state: undefined, data: FormData) {
       }
     );
 
+    console.log(res);
+
     const data = await res.json();
     if (res.ok) {
       cookies().set('token', `${data.email} ${data.accessToken}`, {
